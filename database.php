@@ -9,7 +9,6 @@
         if($conn->connect_error){
             throw new Exception('Connection Failed'. $conn->connect_error);
         }
-        echo 'Connected';
     }catch(Exception $e){
         die('Error :'. $e->getMessage());
     }
