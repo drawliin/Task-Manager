@@ -1,4 +1,7 @@
 <?php
+    session_start();
+    session_destroy();
+
     $emailErr = $passwordErr = $credentialsErr = '';
     if(isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST'){
         $email = $_POST['email'];

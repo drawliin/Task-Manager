@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root{
+    --sidebar-color: #FFF;
+}
+
+body{
+    height: 100vh;
+    background-color: #F4F5F5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+.container {
+    display: flex;
+    gap: 100px;
+    height: 95vh; 
+    width: 80%;
+    overflow: hidden;
+}
+
+
+.sidebar {
+    flex: 0 0 300px; 
+    background-color: var(--sidebar-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    transition: all 0.3s ease; 
+    overflow: hidden; 
+    position: relative;
+}
+
+
+.sidebar.collapsed {
+    flex: 0 0 80px; 
+}
+
+.sidebar i {
+    font-size: 1.6rem;
+    color: hsl(0, 0%, 0%);
+    margin-right: 10px;
+}
+
+.sidebar ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+    width: 100%;
+}
+.sidebar ul a{
+    text-decoration: none;
+    color: hsla(0, 0%, 0%, 0.719); 
+}
+
+.sidebar ul li {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    margin: 0 5px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar ul li:hover {
+    background-color: #f4f5f5;
+}
+
+.sidebar .bx-chevron-right {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: transform font-size 0.3s ease;
+    position: absolute;
+    top: 50%;
+    right: 0px;
+}
+
+.sidebar.collapsed .bx-chevron-right {
+    transform: rotate(180deg);
+}
+.sidebar.collapsed ul li {
+    justify-content: center; 
+    font-size: 0; 
+}
+
+.sidebar.collapsed ul li i {
+    font-size: 2rem; 
+}
+
+.content {
+    flex: 1; 
+    background-color: #f4f5f5;
+    padding: 20px;
+    overflow: auto;
+}
+.content .info-container h2{
+    font-size: 30px;
+}
+.content .info-container p{
+    font-size: 21px;
+    font-style: italic;
+}
+
+
+.content .add-task {
+    display: flex;
+    align-items: center;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    padding: 10px 15px;
+    background-color: #000;
+    color: #fff;
+    width: 400px;
+    margin: 20px 0;
+}
+  
+  /* Input Field */
+.content .add-task input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #fff;
+    font-size: 19px;
+}
+  
+  /* Add Button */
+.content .add-task button {
+    background-color: #fff;
+    color: #000;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+}
+.content .add-task input::placeholder {
+    color: #ccc; 
+    font-size: 17px;
+    
+}
+.content .add-task button:hover {
+    background-color: #ddd;
+}
+
+
+.task-list {
+    max-width: 60%px;
+    margin: 20px 0;
+    padding: 10px;
+}
+.task-list h2{
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+.task {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 15px;
+    border-radius: 15px;
+    margin: 10px 0;
+    background-color: #ffffff;
+
+}
+.task input[type="checkbox"] {
+    margin-right: 15px;
+    appearance: none; 
+    width: 23px;
+    height: 23px;
+    border: 2px solid #ddd;
+    border-radius: 4px; 
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: #fff; 
+}
+input[type="checkbox"]:checked {
+    background-color: #5a9fd6; 
+    border-color: #5a9fd6;
+    position: relative;
+  }
+  
+input[type="checkbox"]:checked::after {
+    content: "✔"; 
+    color: #fff;
+    font-size: 14px;
+    position: absolute;
+    top: 0.3px;
+    left: 3px;
+}
+  
+input[type="checkbox"]:hover {
+    background-color: #e6e6e6;
+    border-color: #aaa;
+}
+.task-title {
+    flex: 1;
+    font-size: 17px;
+    font-weight: 500;
+    color: #333;
+}

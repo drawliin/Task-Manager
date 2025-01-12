@@ -1,12 +1,10 @@
 <?php
     session_start();
-    echo "Hello {$_SESSION['name']}";
-    if(isset($_GET['log-out'])){
+
+    if(!isset($_SESSION['name'])){
         session_destroy();
         header('Location: login.php');
+        exit();
     }
+    header('Location: home.php');
 ?>
-
-<form method='get'>
-    <button name='log-out'>Logout</button>
-</form>
