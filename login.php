@@ -22,6 +22,7 @@
                 $row = $result->fetch_assoc();
                 session_start();
                 $_SESSION['name'] = $row['name'];
+                $_SESSION['id'] = $row['id'];
                 header('Location: index.php');
             }else{
                 $credentialsErr = "Incorrect email or password";

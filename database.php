@@ -1,7 +1,7 @@
 <?php
     $host = 'localhost';
     $db_username = 'root';
-    $db_password = '';
+    $db_password = 'password';
     $db_name = 'task_manager';
 
     try{

@@ -35,22 +35,45 @@
                         <h2>Good Morning, <?php echo "{$_SESSION['name']}"?></h2>
                         <p><?php echo Date('l, d F Y')?></p>
                     </div>
-                    <div>
-                        <button>
-                    </div>
             </div>
 
-            <div class="add-task">
-                <input type="text" id="taskInput" placeholder="Create new task" />
-                <button id="addTaskButton">+</button>
-            </div>
+            <form class="add-task" action='addTask.php' method='GET'>
+                <input type="text" id="taskInput" placeholder="Create new task" name='taskInput'/>
+                <button id="addTaskButton" name='addTask'>+</button>
+            </form>
 
             <div class='task-list'>
-                <h2>Tasks To Complete</h2>
-                <div class="task">
-                    <input type="checkbox" />
-                    <span class="task-title">Jogging</span>
-                </div>
+                <?php
+                    include('database.php');
+                    $userid = $_SESSION['id'];
+                    $sql = "SELECT * FROM tasks WHERE user_id = '$userid' AND status='pending'";
+                    $result = $conn->query($sql);
+                    if($result->num_rows > 0){
+                        echo "<h2>Tasks To Complete</h2>";
+
+                        echo "<form method='GET'>";
+                        while($row = $result->fetch_assoc()){
+                            echo "
+                                <div class='task'>
+                                        <input type='checkbox' value='{$row['id']}' name='checked_task' onChange='this.form.submit()'/>
+                                        <span class='task-title'>{$row['title']}</span>
+                                </div>";
+                        }
+                        echo "</form>";
+                    }
+
+                    if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['checked_task'])){
+                        $taskId = intval($_GET['checked_task']);
+                        $updateQuery = "UPDATE tasks SET status = 'completed' WHERE id = $taskId";
+                        try{
+                            $conn->query($updateQuery);
+                        }catch(Exception $e){
+                            echo "alert({$e->getMessage()})";
+                        }
+                        header("Location: {$_SERVER['PHP_SELF']}");
+                    }
+                ?>
+                
                 
             </div>
         </div>
