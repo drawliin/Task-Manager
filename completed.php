@@ -36,41 +36,34 @@
                             <p><?php echo Date('l, d F Y')?></p>
                         </div>
                 </div>
-        <div/>
+        
             
-            <div class='task-list'>
-                    <?php
-                        include('database.php');
-                        $userid = $_SESSION['id'];
-                        $sql = "SELECT * FROM tasks WHERE user_id = '$userid' AND status='completed'";
-                        $result = $conn->query($sql);
-                        if($result->num_rows > 0){
-                            echo "<h2>Completed Tasks</h2>";
+                <div class='task-list'>
+                        <?php
+                            include('database.php');
+                            $userid = $_SESSION['id'];
+                            $currentDate = null;
 
-                            echo "<form method='GET'>";
-                            while($row = $result->fetch_assoc()){
-                                echo "
-                                    <div class='task'>
-                                            <input type='checkbox' value='{$row['id']}' name='checked_task' onChange='this.form.submit()'/>
-                                            <span class='task-title'>{$row['title']}</span>
-                                    </div>";
-                            }
-                            echo "</form>";
-                        }
+                            $sql = "SELECT * FROM tasks WHERE user_id = '$userid' AND status='completed' ORDER BY completion_date DESC";
+                            $result = $conn->query($sql);
 
-                        if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['checked_task'])){
-                            $taskId = intval($_GET['checked_task']);
-                            $updateQuery = "UPDATE tasks SET status = 'completed' WHERE id = $taskId";
-                            try{
-                                $conn->query($updateQuery);
-                            }catch(Exception $e){
-                                die($e->getMessage());
+                            if($result->num_rows > 0){
+                                echo "<h2>Completed Tasks</h2>";
+
+                                while($row = $result->fetch_assoc()){
+                                    if($row['completion_date'] !== $currentDate){
+                                        $currentDate = $row['completion_date'];
+                                        echo "<h3>".date('d F Y', strtotime($row['completion_date']))."</h3>";
+                                    }
+                                    echo "
+                                        <div class='task'>
+                                                <span class='task-title'>{$row['title']}</span>
+                                        </div>";
+                                }
                             }
-                            header("Location: {$_SERVER['PHP_SELF']}");
-                        }
-                    ?>
-                    
-                    
+                        ?>
+                        
+                        
                 </div>
     </div>
 </body>

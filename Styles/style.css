@@ -168,7 +168,7 @@ body{
 
 
 .task-list {
-    max-width: 60%px;
+    max-width: 65%;
     margin: 20px 0;
     padding: 10px;
 }
@@ -176,6 +176,10 @@ body{
     font-size: 28px;
     margin-bottom: 10px;
 }
+.task-list h3{
+    margin-top: 50px;
+}
+
 .task {
     display: flex;
     align-items: center;
