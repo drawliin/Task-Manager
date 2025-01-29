@@ -28,16 +28,15 @@
                 .then(response => {
                     if (response.ok) {
                         const taskElement = document.querySelector(`input[value="${id}"]`).parentElement;
-                        taskElement.remove();
+                        taskElement.classList.add('hidden');
+                        setTimeout(() => {
+                            taskElement.remove();                          
+                        }, 500);
                     } else {
                         alert("Error updating task.");
                     }
                 })
                 .catch(error => alert("Error:", error));
-        }
-        
-        function addTask(){
-
         }
     </script>
 
@@ -75,7 +74,7 @@
                         while($row = $result->fetch_assoc()){
                             echo "
                                 <div class='task'>
-                                        <input type='checkbox' value='{$row['id']}' name='checked_task' onChange='completeTask({$row['id']})'/>
+                                        <input type='checkbox' value='{$row['id']}'  onChange='completeTask({$row['id']})'/>
                                         <span class='task-title'>{$row['title']}</span>
                                 </div>";
                         }

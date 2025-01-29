@@ -188,7 +188,11 @@ body{
     border-radius: 15px;
     margin: 10px 0;
     background-color: #ffffff;
-
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+.hidden {
+    transform: scale(0);
+    opacity: 0;
 }
 .task input[type="checkbox"] {
     margin-right: 15px;

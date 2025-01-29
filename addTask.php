@@ -1,6 +1,6 @@
 <?php
 
-if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['addTask'])){
+if($_SERVER['REQUEST_METHOD'] == 'GET'){
         session_start();
         include('database.php');
 
@@ -14,10 +14,6 @@ if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['addTask'])){
         catch(Exception $e){
             echo "Error: {$e->getMessage()}";
         }
-            
-        
-
-
-
+        header('Location: home.php');
     }
 ?>
