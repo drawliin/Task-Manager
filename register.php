@@ -40,6 +40,8 @@
             }catch(Exception $e){
                 die('Error: '. $e->getMessage());
             }
+            $conn->close();
+
         }
     }
     
@@ -59,13 +61,13 @@
             <form method='post'>
                 <div class="form-group">
                     <label for='name'>Name: </label>
-                    <input type='text' placeholder='Your Name...' id='name' name='name'/>
+                    <input type='text' value="<?php echo $_POST['name'] ?? ''?>" placeholder='Your Name...' id='name' name='name'/>
                     <?php if(!empty($nameErr)){echo "<p class='error'>$nameErr</p>";} ?>  
                 </div>
 
                 <div class="form-group">
                     <label for='email'>Email: </label>
-                    <input type='email' placeholder='Email...' id='email' name='email'/> 
+                    <input type='email' value="<?php echo $_POST['email'] ?? ''?>" placeholder='Email...' id='email' name='email'/> 
                     <?php 
                         if(!empty($emailErr)){
                             echo "<p class='error'>$emailErr</p>";

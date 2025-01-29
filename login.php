@@ -27,6 +27,7 @@
             }else{
                 $credentialsErr = "Incorrect email or password";
             }
+            $conn->close();
             
         }
     }
@@ -48,13 +49,13 @@
         <form method='post'>
             <div class="form-group">
                 <label for='email'>Email: </label>
-                <input type='email' placeholder='Email...' id='email' name='email'/>
+                <input type='email' value="<?php echo $_POST['email'] ?? ''?>" placeholder='Email...' id='email' name='email'/>
                 <?php if(!empty($emailErr)){echo "<p class='error'>$emailErr</p>";} ?>
             </div>
 
             <div class="form-group">
                 <label for='password'>Password: </label>
-                <input type='password' placeholder='Password...' id='password' name='password'/>
+                <input type='password' value="<?php echo $_POST['password'] ?? ''?>" placeholder='Password...' id='password' name='password'/>
                 <?php if(!empty($passwordErr)){echo "<p class='error'>$passwordErr</p>";} ?>
             </div>
 

@@ -9,5 +9,7 @@
         }catch(Exception $e){
             echo "Error: {$e->getMessage()}";
         }
+        $conn->close();
+
     }
 ?>

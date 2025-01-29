@@ -30,8 +30,8 @@
                         const taskElement = document.querySelector(`input[value="${id}"]`).parentElement;
                         taskElement.classList.add('hidden');
                         setTimeout(() => {
-                            taskElement.remove();                          
-                        }, 500);
+                                taskElement.remove();                          
+                        }, 700);
                     } else {
                         alert("Error updating task.");
                     }
@@ -51,7 +51,7 @@
         <div class='content'>
             <div class='info-container'>
                     <div>
-                        <h2>Good Morning, <?php echo "{$_SESSION['name']}"?></h2>
+                        <h2><?php echo 'Good '. (date('H') >= 12 ? 'Evening ' : 'Morning ') .",{$_SESSION['name']}"?></h2>
                         <p><?php echo Date('l, d F Y')?></p>
                     </div>
             </div>
@@ -80,6 +80,7 @@
                         }
                         echo "</form>";
                     }
+                    $conn->close();
                 ?>
                 
                 

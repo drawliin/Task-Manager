@@ -132,8 +132,7 @@ body{
     margin: 20px 0;
 }
   
-  /* Input Field */
-.content .add-task input {
+.content .add-task input{
     flex: 1;
     border: none;
     outline: none;
@@ -141,8 +140,8 @@ body{
     color: #fff;
     font-size: 19px;
 }
+
   
-  /* Add Button */
 .content .add-task button {
     background-color: #fff;
     color: #000;
@@ -168,13 +167,14 @@ body{
 
 
 .task-list {
-    max-width: 65%;
+    max-width: 75%;
     margin: 20px 0;
     padding: 10px;
 }
 .task-list h2{
     font-size: 28px;
     margin-bottom: 10px;
+    overflow: auto;
 }
 .task-list h3{
     margin-top: 50px;
@@ -183,6 +183,7 @@ body{
 .task {
     display: flex;
     align-items: center;
+    min-width: 300px;
     gap: 10px;
     padding: 20px 15px;
     border-radius: 15px;
