@@ -21,6 +21,26 @@
     <title>Task Manager</title>
     <link rel="stylesheet" href="Styles/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <script>
+        function completeTask(id) {
+            fetch(`updateTasks.php?checked_task=${id}`)
+                .then(response => {
+                    if (response.ok) {
+                        const taskElement = document.querySelector(`input[value="${id}"]`).parentElement;
+                        taskElement.remove();
+                    } else {
+                        alert("Error updating task.");
+                    }
+                })
+                .catch(error => alert("Error:", error));
+        }
+        
+        function addTask(){
+
+        }
+    </script>
+
 </head>
 <body>
     <div class='container'>
@@ -55,22 +75,11 @@
                         while($row = $result->fetch_assoc()){
                             echo "
                                 <div class='task'>
-                                        <input type='checkbox' value='{$row['id']}' name='checked_task' onChange='this.form.submit()'/>
+                                        <input type='checkbox' value='{$row['id']}' name='checked_task' onChange='completeTask({$row['id']})'/>
                                         <span class='task-title'>{$row['title']}</span>
                                 </div>";
                         }
                         echo "</form>";
-                    }
-
-                    if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['checked_task'])){
-                        $taskId = intval($_GET['checked_task']);
-                        $updateQuery = "UPDATE tasks SET status = 'completed', completion_date = CURRENT_DATE() WHERE id = $taskId";
-                        try{
-                            $conn->query($updateQuery);
-                        }catch(Exception $e){
-                            echo "alert({$e->getMessage()})";
-                        }
-                        header("Location: {$_SERVER['PHP_SELF']}");
                     }
                 ?>
                 

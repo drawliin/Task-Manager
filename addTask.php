@@ -8,9 +8,14 @@ if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['addTask'])){
         $id = $_SESSION['id'];
 
         $sql = "INSERT INTO tasks(title, user_id) VALUES ('$taskInput', '$id')";
-        if($conn->query($sql)){
-            header('Location: home.php');
+        try{
+            $conn->query($sql);
         }
+        catch(Exception $e){
+            echo "Error: {$e->getMessage()}";
+        }
+            
+        
 
 
 
