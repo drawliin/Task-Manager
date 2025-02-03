@@ -1,4 +1,4 @@
-### 🔗 Live Demo / Repository: http://task-manager-app.infinityfreeapp.com/
+### 🔗 Live Demo : http://task-manager-app.infinityfreeapp.com/
 
 # Task Manager
 
